@@ -1,38 +1,247 @@
-.App {
-  text-align: center;
+.login-form{
+    background-color:black;
+    max-width:510px;
+    padding:14px;
+    margin:auto;
+    /*margin-top: 528px;*/
+    height: 100%;
+    color:white;
+    border-radius: 5%;
+
+}
+div.c {
+    text-indent: 200px;
+}
+div.b {
+    text-indent: 30px;
+}
+.login-label{
+    margin-left:4px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.add-label{
+    margin-left:4px;
+    margin-right: 10px;
+    color:#32cd32;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.register-label{
+    margin-left:4px;
+    color:red;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.span{
+    align-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.buttonNotification {
+    border-radius: 50%;
+    font-size: 9px;
+    text-align: center;
+    color:white;
+    background-color:#32cd32;
+    border:none;
+    margin-left: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.register-form{
+    background-color:black;
+    max-width:550px;
+    padding:15px;
+    margin:auto;
+    max-height: 620px;
+    color:white;
+}
+.register-form-client{
+    background-color:black;
+    max-width:550px;
+    padding:15px;
+    margin:auto;
+    max-height: 624px;
+    color:white;
+}
+.register-form2{
+    background-color:whitesmoke;
+    max-width:500px;
+    padding:15px;
+    margin-left:623px;
+    max-height: 200px;
+    color:black;
+}
+
+.blank-label{
+    color:white
+}
+
+.search-form{
+    max-width:700px;
+    padding:15px;
+    margin-left:20px;
+    height: 150%;
+    color:black;
+    background-color: transparent;
+}
+
+.active-form{
+    max-width:300px;
+    padding:15px;
+    margin-left:20px;
+    height: 150%;
+    color:black;
+}
+.button3 {
+    display: inline-block;
+    align-self:center;
+    margin-left: 50%;
+    margin-top:1%;
+    padding: 5px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color:#008000;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button2{
+    border-radius:50%;
+    background-color:#B22222;
+    color:#fff;
+    outline:none;
+    cursor:pointer;
+    text-align:center;
+    font-size:18px;
+    border:none;
+    margin:20px;
+    box-shadow: 0 9px #999;
+}
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    /*top: 110px;*/
+    left: 0;
+    background-color:  black;
+    overflow-x: hidden;
+    padding-top: 30px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: green;
+    color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+
+.user-table-container {
+    margin: 20px;
+
+}
+
+.user-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #a00; /* Darker color for delete button */
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    background-color: #555; /* Darker color on hover */
+}
+.input-table-td{
+    padding: 8px;
+    border: 0px;
+    width: 100%;
+    outline: none;
+    background: #f4f4f4
+
+}
+.input-table-td-profile{
+    padding: 8px;
+    border: 0px;
+    width: 300px;
+    outline: none;
+    background: #f4f4f4
+
 }

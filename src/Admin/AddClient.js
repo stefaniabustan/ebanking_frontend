@@ -7,7 +7,7 @@ import isEmail from 'validator/lib/isEmail';
 
 import BackgroundImg from '../assets/img3.jpeg';
 // import Jumbotron from "react-bootstrap/Jumbotron";
-import NavBarNotLogged from "../NavBar/NavBarNotLogged";
+import NavBarNotLogged from "../NavBar/AdminNavBar";
 
 const backgroundStyle = {
     backgroundPosition: 'center',
@@ -18,7 +18,7 @@ const backgroundStyle = {
     backgroundImage: `url(${BackgroundImg})`
 };
 
-class Register extends React.Component{
+class AddClient extends React.Component{
 
     constructor(props){
         super(props)
@@ -26,7 +26,6 @@ class Register extends React.Component{
             username:"",
             password1:"",
             password2:"",
-            type:"",
             firstname:"",
             secondname:"",
             address:"",
@@ -48,11 +47,11 @@ class Register extends React.Component{
     handleClick(){
         // if(isEmail(this.state.username))
         {
-        //     this.setState({
-        //         usernameNotMail:"false"
-        //     })
-            axios.get(`http://localhost:8080/getUser/${this.state.username}`).then(response1=>{
-                if(response1.data.username!=="null") this.setState({
+            //     this.setState({
+            //         usernameNotMail:"false"
+            //     })
+            axios.get(`http://localhost:8080/getUser/${this.state.username}`).then(response=>{
+                if(response.data.username!=="null") this.setState({
                     usernameExist:"true"
                 })
                 else{
@@ -63,88 +62,38 @@ class Register extends React.Component{
                         this.setState({
                             passwordError:"true"
                         })
-                        if(this.state.username.startsWith("admin"))
-                            this.state.type='ADMIN'
-                        else{
-                            if(this.state.username.startsWith("employee"))
-                                this.state.type='EMPLOYEE'
-                            else
-                                this.state.type='CLIENT'
-
-                        }
                         axios.post('http://localhost:8080/user/modify',  null,{
                             params: {
                                 username: this.state.username,
                                 password: this.state.password1,
-                                type: this.state.type,
+                                type: 'CLIENT',
                                 operation: 'insert'
                             },
                             headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded'
-                                    }
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
                         }).then(response=>{
                             console.log(response.data)
-                            if(this.state.username.startsWith("admin")) {
-                                axios.post('http://localhost:8080/admin/modify', null, {
-                                    params: {
-                                        user_id:response.data.id,
-                                        operation: 'insert'
-                                    },
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded'
-                                    }
-                                }).then(response=>{
-                                    this.props.history.push("/AdminHome")
-                                })
-                                    .catch(error => {
-                                        console.error("Error adding admin details:", error);
-                                        // Handle error for adding client details
-                                    });
-                            }
-                            else{
-                                if(this.state.username.startsWith("employee"))
-                                {
-                                    axios.post('http://localhost:8080/employee/modify', null, {
-                                        params: {
-                                            user_id:response.data.id,
-                                            operation: 'insert'
-                                        },
-                                        headers: {
-                                            'Content-Type': 'application/x-www-form-urlencoded'
-                                        }
-                                    }).then(response=>{
-                                        this.props.history.push("/EmployeeHome")
-                                    })
-                                        .catch(error => {
-                                            console.error("Error adding employee details:", error);
-                                            // Handle error for adding client details
-                                        });
+                            axios.post('http://localhost:8080/client/modify', null, {
+                                params: {
+                                    firstname:this.state.firstname,
+                                    secondname:this.state.secondname,
+                                    email:this.state.username,
+                                    address:this.state.address,
+                                    user_id:response.data.id,
+                                    operation: 'insert'
+                                },
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
                                 }
-                                else
-                                {
-                                    axios.post('http://localhost:8080/client/modify', null, {
-                                        params: {
-                                            firstname:this.state.firstname,
-                                            secondname:this.state.secondname,
-                                            email:this.state.username,
-                                            address:this.state.address,
-                                            user_id:response.data.id,
-                                            operation: 'insert'
-                                        },
-                                        headers: {
-                                            'Content-Type': 'application/x-www-form-urlencoded'
-                                        }
-                                    }).then(response=>{
-                                        this.props.history.push("/CustomerHome")
-                                    })
-                                        .catch(error => {
-                                            console.error("Error adding client details:", error);
-                                            // Handle error for adding client details
-                                        });
-                                }
-
-                            }
-
+                            }).then(response=>{
+                                //this.props.history.push("/")
+                                window.location.reload();
+                            })
+                                .catch(error => {
+                                    console.error("Error adding client details:", error);
+                                    // Handle error for adding client details
+                                });
                         })
                     }
                     else this.setState({
@@ -152,7 +101,7 @@ class Register extends React.Component{
                     })
 
                 }
-             })}
+            })}
 
         // else this.setState({
         //     usernameNotMail:"true"
@@ -170,12 +119,13 @@ class Register extends React.Component{
         return(
             <div className="body">
                 <NavBarNotLogged/>
+                <br></br>
                 {/*<div style={backgroundStyle}>*/}
-                <div  style={backgroundStyle} className="jumbotron">
-                    <Form className="register-form-client">
-                    <span>
-                        <h3>Register</h3>
-                    </span>
+                {/*<div  style={backgroundStyle} className="jumbotron">*/}
+                    <Form className="register-form">
+                    {/*<span>*/}
+                    {/*    /!*<h3>Register</h3>*!/*/}
+                    {/*</span>*/}
                         <FormGroup>
                             {this.state.usernameNotMail==="true" ?
                                 <Label className="register-label">Not a valid email address*</Label> :
@@ -246,11 +196,11 @@ class Register extends React.Component{
                         <Button className="btn-lg btn-dark btn-block"
                                 onClick={this.handleClick}>Submit</Button>
                     </Form>
-                </div>
+                {/*</div>*/}
                 {/*</div>*/}
             </div>
         )
     }
 }
 
-export default Register
+export default AddClient

@@ -1,0 +1,22 @@
+.navbar_right {
+    display: flex;
+    justify-content: flex-end; /* Aliniere la dreapta */
+    align-items: center; /* Aliniere verticală */
+}
+
+/* Stilizare pentru butonul din bara de navigare */
+.buttonAdd {
+    padding: 17px 50px; /* Spațiere interioară a butonului */
+    border: none; /* Eliminare border */
+    border-radius: 4px; /* Rotunjire colțuri */
+    background-color: rgb(255, 255, 255); /* Culoare fundal buton */
+    color: #000000; /* Culoare text buton */
+    cursor: pointer; /* Transformarea cursorului la interacțiune */
+    outline: none; /* Eliminarea outline-ului la focus */
+    transition: background-color 0.3s ease; /* Tranziție culoare fundal */
+}
+
+/* Stilizare pentru hover pe buton */
+.buttonAdd:hover {
+    background-color: #4466b7; /* Culoare fundal buton la hover */
+}
